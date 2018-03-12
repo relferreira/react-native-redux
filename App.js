@@ -7,6 +7,8 @@ import axiosMiddleware from 'redux-axios-middleware';
 
 import reducer from './reducer';
 import RepoList from './RepoList';
+import RepoDetail from './RepoDetail';
+import Profile from './Profile';
 
 const client = axios.create({
   baseURL: 'https://api.github.com',
@@ -20,7 +22,9 @@ export default class App extends Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <RepoList />
+          {/* <RepoList /> */}
+          {/* <RepoDetail /> */}
+          <Profile />
         </View>
       </Provider>
     );

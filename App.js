@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
+import { StackNavigator, TabNavigator } from 'react-navigation';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 
@@ -17,14 +18,30 @@ const client = axios.create({
 
 const store = createStore(reducer, applyMiddleware(axiosMiddleware(client)));
 
+const Tabs = TabNavigator({
+  RepoList: {
+    screen: RepoList
+  },
+  Profile: {
+    screen: Profile
+  }
+});
+
+const Stack = StackNavigator({
+  Home: {
+    screen: Tabs
+  },
+  Detail: {
+    screen: RepoDetail
+  }
+});
+
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          {/* <RepoList /> */}
-          {/* <RepoDetail /> */}
-          <Profile />
+          <Stack />
         </View>
       </Provider>
     );
@@ -34,7 +51,6 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    marginTop: 50
+    backgroundColor: '#fff'
   }
 });

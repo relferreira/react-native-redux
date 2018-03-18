@@ -4,10 +4,12 @@ import { connect } from 'react-redux';
 import { getRepoDetail } from './reducer';
 
 class RepoDetail extends Component {
+  static navigationOptions = {
+    title: 'RepoDetail'
+  };
   componentDidMount() {
-    this.props
-      .getRepoDetail('relferreira', 'react-native-redux')
-      .catch(console.log);
+    const { name } = this.props.navigation.state.params;
+    this.props.getRepoDetail('relferreira', name);
   }
   render() {
     const { repoInfo, loadingInfo } = this.props;

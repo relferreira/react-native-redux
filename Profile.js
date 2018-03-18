@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { getUser } from './reducer';
 
 class Profile extends Component {
+  static navigationOptions = {
+    title: 'Profile'
+  };
   componentDidMount() {
     this.props.getUser('relferreira');
   }
